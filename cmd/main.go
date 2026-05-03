@@ -19,6 +19,10 @@ func main() {
 
 	http.HandleFunc("/location", httpHandler.Location)
 	http.HandleFunc("/ws", wsHandler.Handle)
+	
+	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("ok"))
+	})
 
 	port := os.Getenv("PORT")
 	if port == "" {
